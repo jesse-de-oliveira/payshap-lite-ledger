@@ -13,14 +13,18 @@ public class NaturalKey {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id; //pk
 
-    @OneToOne
-    @JoinColumn(name = "account_id", unique = true)
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
     private Account account; //fk
 
     @Column(unique = true, nullable = false)
     private String aliasValue;
 
+    @Column(nullable = false)
     private String keyType;
+
+    @Column(nullable = false)
+    private boolean isActive;
 
     //No-arg constructor
     protected NaturalKey() {
@@ -31,6 +35,7 @@ public class NaturalKey {
         this.aliasValue = aliasValue;
         this.keyType = keyType;
         this.account = account;
+        this.isActive = true;
     }
 
     // Getters & Setters (No setters! Once the NaturalKey is created via the constructor, it cannot be tampered with.)
@@ -48,6 +53,10 @@ public class NaturalKey {
 
     public String getKeyType() {
         return keyType;
+    }
+
+    public void deactivate() {
+        this.isActive = false;
     }
 
 

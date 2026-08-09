@@ -44,7 +44,7 @@ public class Account {
     public String getOwnerName() {
         return ownerName;
     }
-    public void setOwnerName(String newName) {
+    public void updateOwnerName(String newName) {
         this.ownerName = newName;
     }
 
@@ -54,14 +54,15 @@ public class Account {
     }
     /*private void setBalance(BigDecimal newBalance) {
         this.balance = newBalance;
-    }*/ //removed since exposing this method bypasses auditing trail (behavioral methods to be implemented later)
+        removed since exposing this method bypasses auditing trail (behavioral methods to be implemented later)
+    }*/
 
     //is_active getter & setter
     public boolean getIsActive() {
         return isActive;
     }
-    public void setIsActive(boolean newAccountActivityStatus) {
-        this.isActive = newAccountActivityStatus;
+    public void deactivate() {
+        this.isActive = false;
     }
 
 
