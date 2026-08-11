@@ -51,9 +51,12 @@ public class TransactionService {
         ledgerEntryRepository.save(senderLedgerEntry);
         ledgerEntryRepository.save(recipientLedgerEntry);
 
-
     }
 
+    // TODO: Implement executeDeposit(UUID accountId, BigDecimal amount, String idempotencyKey)
+    // Goal: Wrap a single-entry deposit in a standard Transaction for tracking.
 
+    // TODO: Implement executeWithdrawal(UUID accountId, BigDecimal amount, String idempotencyKey)
+    // Goal: Wrap a single-entry withdrawal in a standard Transaction, including balance checks.
 
 }

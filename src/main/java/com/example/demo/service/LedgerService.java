@@ -33,4 +33,10 @@ public class LedgerService {
     }
 
     //TODO: Implement getTransactionHistory(UUID accountId) for version 1.1
+
+    // TODO: Implement processDeposit(UUID accountId, BigDecimal amount)
+    // Goal: Create a single CREDIT LedgerEntry and update the account balance.
+
+    // TODO: Implement processWithdrawal(UUID accountId, BigDecimal amount)
+    // Goal: Create a single DEBIT LedgerEntry after verifying sufficient funds.
 }
