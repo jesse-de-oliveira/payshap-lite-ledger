@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayShap Lite - Merchant Interface</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans p-4 md:p-8">
+
+<div class="max-w-3xl mx-auto space-y-8">
+
+    <!-- Header -->
+    <div class="text-center">
+        <h1 class="text-4xl font-bold text-indigo-600 tracking-tight">PayShap Lite</h1>
+        <p class="text-slate-500 mt-2">Double-Entry Ledger & Transaction Engine</p>
+    </div>
+
+    <!-- Section 1: Create Account -->
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-semibold mb-4 text-slate-700">1. Register Account</h2>
+        <div class="space-y-4">
+            <input type="text" id="ownerName" placeholder="Owner Name (e.g., Jesse)" class="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <input type="email" id="aliasValue" placeholder="Alias (e.g., jesse@example.com)" class="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button id="btnRegister" class="w-full bg-indigo-600 text-white font-medium px-4 py-3 rounded-lg hover:bg-indigo-700 transition duration-150">Create Account</button>
+            <div id="registerResponse" class="text-sm text-slate-600 mt-2 p-3 bg-slate-50 rounded-lg hidden break-all"></div>
+        </div>
+    </div>
+
+    <!-- Section 2: Check Balance -->
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-semibold mb-4 text-slate-700">2. Check Ledger Balance</h2>
+        <div class="space-y-4">
+            <input type="text" id="balanceAccountId" placeholder="Account UUID" class="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button id="btnCheckBalance" class="w-full bg-slate-800 text-white font-medium px-4 py-3 rounded-lg hover:bg-slate-900 transition duration-150">Fetch Balance</button>
+            <div id="balanceResponse" class="text-lg font-bold text-indigo-600 mt-2 p-3 bg-indigo-50 rounded-lg hidden"></div>
+        </div>
+    </div>
+
+    <!-- Section 3: Execute Transfer -->
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+        <h2 class="text-xl font-semibold mb-4 text-slate-700">3. Execute Transfer</h2>
+        <div class="space-y-4">
+            <input type="text" id="fromAccount" placeholder="From Account UUID" class="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <input type="text" id="toAccount" placeholder="To Account UUID" class="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <input type="number" id="transferAmount" placeholder="Amount (e.g., 500.00)" class="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button id="btnTransfer" class="w-full bg-emerald-600 text-white font-medium px-4 py-3 rounded-lg hover:bg-emerald-700 transition duration-150">Send Funds</button>
+            <div id="transferResponse" class="text-sm text-slate-600 mt-2 p-3 bg-slate-50 rounded-lg hidden"></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- App Logic -->
+<script src="app.js"></script>
+</body>
+</html>
