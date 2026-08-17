@@ -55,6 +55,22 @@ public class TransactionService {
 
     // TODO: Implement executeDeposit(UUID accountId, BigDecimal amount, String idempotencyKey)
     // Goal: Wrap a single-entry deposit in a standard Transaction for tracking.
+    @Transactional
+    public void executeDeposit(UUID accountId, BigDecimal amount, String idempotencyKey) {
+        if (transactionRepository.findByIdempotencyKey(idempotencyKey).isPresent()) {
+            throw new RuntimeException("Duplicate deposit request detected.");
+        }
+
+        Account account = accountRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Account does not exist!"));
+
+        Transaction transaction = new Transaction(idempotencyKey, amount);
+        transaction.markAsCompleted();
+        transaction = transactionRepository.save(transaction);
+
+        LedgerEntry credit = new LedgerEntry(account, transaction, amount, "CREDIT");
+        ledgerEntryRepository.save(credit);
+    }
+
 
     // TODO: Implement executeWithdrawal(UUID accountId, BigDecimal amount, String idempotencyKey)
     // Goal: Wrap a single-entry withdrawal in a standard Transaction, including balance checks.

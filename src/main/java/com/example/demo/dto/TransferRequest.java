@@ -9,4 +9,3 @@ public record TransferRequest(
         BigDecimal amount,
         String idempotencyKey
 ) {}
-    
