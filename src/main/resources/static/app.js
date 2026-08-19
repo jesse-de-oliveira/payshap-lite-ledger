@@ -94,3 +94,39 @@ document.getElementById('btnTransfer').addEventListener('click', async () => {
         responseDiv.innerHTML = `Connection error.`;
     }
 });
+
+// Deposit Logic
+document.getElementById('btnDeposit').addEventListener('click', async () => {
+    const accountId = document.getElementById('depositAccountId').value;
+    const amount = document.getElementById('depositAmount').value;
+    const responseDiv = document.getElementById('depositResponse');
+
+    // Auto-generating a timestamp-based idempotency key for the UI
+    const idempotencyKey = 'deposit-ui-' + Date.now();
+
+    try {
+        const response = await fetch('http://localhost:8080/api/v1/transactions/deposit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                accountId: accountId,
+                amount: parseFloat(amount),
+                idempotencyKey: idempotencyKey
+            })
+        });
+
+        responseDiv.classList.remove('hidden', 'bg-red-50', 'text-red-600', 'bg-emerald-50', 'text-emerald-700');
+
+        if (response.ok) {
+            responseDiv.classList.add('bg-emerald-50', 'text-emerald-700');
+            responseDiv.innerHTML = `Deposit Successful! 💸`;
+        } else {
+            responseDiv.classList.add('bg-red-50', 'text-red-600');
+            responseDiv.innerHTML = `Deposit Failed. Check your UUID.`;
+        }
+    } catch (error) {
+        responseDiv.classList.remove('hidden');
+        responseDiv.classList.add('bg-red-50', 'text-red-600');
+        responseDiv.innerHTML = `Connection error. Is the Spring Boot server running?`;
+    }
+});

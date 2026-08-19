@@ -50,6 +50,17 @@
         </div>
     </div>
 
+    <!-- Section: Deposit Funds -->
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mt-6">
+        <h2 class="text-xl font-semibold mb-4 text-slate-700">Fund Account</h2>
+        <div class="space-y-4">
+            <input type="text" id="depositAccountId" placeholder="Account UUID" class="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <input type="number" id="depositAmount" placeholder="Amount (e.g., 1000.00)" class="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button id="btnDeposit" class="w-full bg-blue-600 text-white font-medium px-4 py-3 rounded-lg hover:bg-blue-700 transition duration-150">Deposit Funds</button>
+            <div id="depositResponse" class="text-sm text-slate-600 mt-2 p-3 bg-slate-50 rounded-lg hidden"></div>
+        </div>
+    </div>
+
 </div>
 
 <!-- App Logic -->
